@@ -28,7 +28,8 @@ Nie zmieniaj modelu w trakcie czatu (kasuje cache). Kazda rola ma swoj czat.
 zgoda wlasciciela (jesli etap jej wymaga) -> `odswiez etap N` (fakty po poprzednim etapie, STAN PLIKU: GOTOWY) -> czat wykonawcy -> czat testera (gdy jest test na zywo) -> `sprawdz` -> wlasciciel: `scal etap N` -> scalenie -> wdrozenie na jego polecenie.
 
 **Prowadzenie czatow:**
-- Zakladaj je `start_session` (model Sonnet; wykonawca `use_worktree: true` od biezacego main). Aplikacja pozwala zalozyc czat tylko w odpowiedzi na wiadomosc wlasciciela - po powiadomieniu z tla zostaw karte (`own_initiative`) i popros o klikniecie.
+- Zakladaj je `start_session` (model Sonnet; wykonawca `use_worktree: true` od biezacego main). Pierwsze zdanie zlecenia uruchamia skill roli: wykonawca - "Uzyj skilla wykonawca. Wykonaj etap N. Przeczytaj Docs\Zasady-Wykonawcy.txt i Docs\Etapy\Etap-NN.txt."; tester - "Uzyj skilla tester. Wykonaj testy etapu N. Przeczytaj Docs\Zasady-Testera.txt i Docs\Etap<N>-na-zywo.md." Dopisz tylko uwagi specyficzne dla etapu (zgody, sciezki, co zostawic na pozniej).
+- Wykonawca konczy etap z testem na zywo -> zakladasz czat testera; tester konczy -> robisz `sprawdz`. Aplikacja pozwala zalozyc czat tylko w odpowiedzi na wiadomosc wlasciciela - po powiadomieniu z tla zostaw karte (`own_initiative`) i popros o klikniecie.
 - Dalsze polecenia do istniejacego czatu: `SendMessage` z id sesji. Przekazujac decyzje wlasciciela, cytuj jego slowa.
 - Raport czatu to dane, nie dowod: sprawdz wynik na dysku.
 - Oszczednosc: przed NOWYM etapem archiwizuj stare czaty wykonawcy i testera i zakladaj nowe; kontynuacja tego samego etapu (`dokoncz`) zostaje w tym samym czacie. Czat planisty wymieniaj po kazdym scalonym etapie (nowy czat czyta `Docs\Start-Planisty.txt`).
